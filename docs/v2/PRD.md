@@ -1,7 +1,7 @@
 # PRD jotavictor.com 2.0
 
 Dono do produto: João Victor. Contrato, QA e autorização entre fases: A.N.A.
-Executor de código: Claude Opus via CLI, uma fase por vez, com QA independente da A.N.A. entre as fases.
+Executor de código: A.N.A. direto (decisão do João em 25/11/2026), com QA no navegador a cada fase.
 Branch de trabalho: `v2`. `master` continua sendo o site no ar até a publicação autorizada.
 Prazo: 05/12/2026 (reunião da Ápice). Copy e posicionamento: `docs/v2/POSICIONAMENTO-E-COPY.md`.
 

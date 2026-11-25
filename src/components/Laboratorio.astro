@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Seta from './Seta.astro';
+const itens = (await getCollection('laboratorio', ({ data }) => data.visivel)).sort((a, b) => a.data.ordem - b.data.ordem);
+---
+<section id="laboratorio" class="secao laboratorio" aria-labelledby="lab-titulo">
+  <div class="wrap">
+    <header class="sec-cabeca lab-cabeca">
+      <p class="eyebrow">Laboratório</p>
+      <h2 id="lab-titulo">Produtos <em class="acento">próprios.</em></h2>
+      <p>O que eu construo por conta própria, testando ideias no mundo real.</p>
+    </header>
+    <ol class="lab-lista">
+      {itens.map((p, i) => (
+        <li class="lab-item">
+          <a href={p.data.url} target="_blank" rel="noopener">
+            <span class="lab-num mono">L{i + 1}</span>
+            <span class="lab-nome">{p.data.nome}</span>
+            <span class="lab-resumo">{p.data.resumo}</span>
+            <span class="lab-url mono">{p.data.urlRotulo}<Seta /></span>
+            <span class="lab-tela phone" aria-hidden="true"><span class="phone-tela">
+              <Image src={p.data.celular} alt="" widths={[240, 360]} sizes="150px" loading="lazy" />
+            </span></span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .lab-cabeca h2 { font-size: clamp(2.1rem, 4.4vw, 3.6rem); }
+  .lab-lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .lab-item { border-bottom: 1px solid var(--line); }
+  .lab-item a { display: grid; grid-template-columns: 60px minmax(0, 3fr) minmax(0, 5fr) auto 130px; gap: 28px; align-items: center; padding: 26px 0; text-decoration: none; color: inherit; transition: background-color 0.4s; }
+  .lab-num { color: var(--muted-2); }
+  .lab-nome { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 600; letter-spacing: -0.04em; transition: color 0.3s; }
+  .lab-resumo { color: var(--muted); font-size: 16px; }
+  .lab-url { color: var(--muted-2); display: inline-flex; gap: 8px; align-items: center; white-space: nowrap; font-size: 11px; transition: color 0.3s; }
+  .lab-tela { width: 120px; justify-self: end; padding: 5px; border-radius: 22px; transform: rotate(4deg) translateY(6px); transition: transform 0.6s var(--ease); }
+  .lab-tela .phone-tela { border-radius: 18px; aspect-ratio: 390 / 560; }
+  .lab-item a:hover .lab-nome { color: var(--champagne); }
+  .lab-item a:hover .lab-url { color: var(--ivory); }
+  .lab-item a:hover .lab-tela { transform: rotate(0deg) translateY(-4px) scale(1.06); }
+  @media (max-width: 900px) {
+    .lab-item a { grid-template-columns: minmax(0, 1fr) 96px; grid-template-areas: 'num tela' 'nome tela' 'resumo tela' 'url tela'; gap: 6px 20px; padding: 24px 0; }
+    .lab-num { grid-area: num; } .lab-nome { grid-area: nome; } .lab-resumo { grid-area: resumo; font-size: 15px; } .lab-url { grid-area: url; margin-top: 6px; }
+    .lab-tela { grid-area: tela; width: 96px; align-self: center; }
+  }
+</style>

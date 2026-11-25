@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import ConversaRise from './vidal/ConversaRise.astro';
+import CartaoMeta from './vidal/CartaoMeta.astro';
+
+interface Props { trabalho: CollectionEntry<'trabalhos'>; prioridade?: boolean }
+const { trabalho, prioridade = false } = Astro.props;
+const d = trabalho.data;
+const host = d.url ? new URL(d.url).host : '';
+---
+{d.visual === 'vidal' ? (
+  <div class="vc vc-vidal">
+    <div class="vc-cartao"><CartaoMeta /></div>
+    <div class="vc-phone phone"><div class="phone-tela"><ConversaRise animar={false} /></div></div>
+    <p class="vc-nota mono">Demonstração com dados fictícios</p>
+  </div>
+) : (
+  <div class="vc vc-capturas">
+    {d.desktop && (
+      <div class="vc-desk browser"><div class="browser-barra"><i></i><i></i><i></i><span>{host}</span></div>
+        <Image src={d.desktop} alt={`Site ${d.cliente} no computador`} widths={[640, 960, 1400]} sizes="(max-width: 900px) 92vw, 62vw" loading={prioridade ? 'eager' : 'lazy'} />
+      </div>
+    )}
+    {d.celular && (
+      <div class="vc-phone phone"><div class="phone-tela">
+        <Image src={d.celular} alt={`Site ${d.cliente} no celular`} widths={[300, 480, 640]} sizes="(max-width: 900px) 36vw, 18vw" loading={prioridade ? 'eager' : 'lazy'} />
+      </div></div>
+    )}
+  </div>
+)}
+
+<style>
+  .vc { position: relative; }
+  .vc-capturas { padding: 0 9% 9% 0; }
+  .vc-capturas .vc-phone { position: absolute; right: 0; bottom: 0; width: 27%; }
+  .vc-vidal { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 6%; align-items: center; padding: 4% 4% 0; }
+  .vc-vidal .vc-cartao { transform: rotate(-2.5deg); }
+  .vc-vidal .vc-phone { transform: rotate(2deg) translateY(4%); }
+  .vc-nota { grid-column: 1 / -1; color: var(--muted-2); font-size: 11px; margin-top: 18px; text-align: center; }
+  @media (max-width: 600px) {
+    .vc-vidal { grid-template-columns: 1fr; padding: 0 0 0; gap: 0; }
+    .vc-vidal .vc-cartao { width: 100%; transform: none; position: relative; z-index: 1; }
+    .vc-vidal .vc-phone { width: 52%; justify-self: end; margin: -8% -2% 0 0; transform: rotate(3deg); position: relative; z-index: 2; }
+    .vc-capturas .vc-phone { width: 32%; }
+  }
+</style>

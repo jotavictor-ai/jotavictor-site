@@ -153,8 +153,9 @@ Botões: **[Chamar no WhatsApp]** · contato@jotavictor.com
 - CatálogoZap é ferramenta do João, não produto oficial da Opella.
 - Nenhum depoimento até existir texto autorizado.
 
-## 6. Pendências do João
+## 6. Decisões do João (25/11/2026)
 
-1. Headline A ou B.
-2. Número de WhatsApp comercial do site (candidato: o mesmo do CatálogoZap, 84 99688-7483).
-3. Confirmar "7 lojas" e o selo "Em operação" da Vidal.
+1. Headline A: "Eu construo o que o seu negócio precisa."
+2. WhatsApp do site: 84 99688-7483 (o mesmo do CatálogoZap).
+3. "7 lojas" e selo "Em operação" da Vidal: aprovados.
+4. Executor: A.N.A. direto, sem CLI.

@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import Seta from './Seta.astro';
+import { contato } from '../data/site';
+import retrato from '../assets/joao/sobre.webp';
+import estrada from '../assets/joao/estrada.webp';
+---
+<section id="sobre" class="secao sobre" aria-labelledby="sobre-titulo">
+  <div class="wrap sobre-grade">
+    <div class="sobre-fotos">
+      <figure class="foto-principal">
+        <Image src={retrato} alt="João Victor, de camisa preta, sentado à mesa." widths={[420, 640, 900]} sizes="(max-width: 900px) 80vw, 36vw" loading="lazy" />
+      </figure>
+      <figure class="foto-campo">
+        <Image src={estrada} alt="Estrada vista de dentro do carro, a caminho de clientes." widths={[260, 420]} sizes="(max-width: 900px) 36vw, 15vw" loading="lazy" />
+        <figcaption class="mono">No campo</figcaption>
+      </figure>
+    </div>
+    <div class="sobre-texto">
+      <p class="eyebrow">Quem está por trás</p>
+      <h2 id="sobre-titulo">João Victor<span class="ponto">.</span></h2>
+      <p class="sobre-lead">Antes de programar, eu vendo. Passo o dia em farmácia, balcão e negociação, e é dali que vem o meu jeito de trabalhar: entender o problema do negócio antes de escolher a tecnologia.</p>
+      <p>Hoje construo sites, sistemas e assistentes de IA para empresas que precisam de coisa funcionando, não de apresentação bonita.</p>
+      <p class="sobre-local mono">Natal, RN · Projetos em todo o Brasil</p>
+      <a class="link-seta sobre-fit" href={contato.instagramFit} target="_blank" rel="noopener">Também falo de treino em @jotav.fit<Seta /></a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sobre-grade { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(40px, 7vw, 110px); align-items: center; }
+  .sobre-fotos { position: relative; padding: 0 16% 12% 0; }
+  .foto-principal { margin: 0; border-radius: 22px; overflow: hidden; aspect-ratio: 4 / 5; background: var(--graphite); }
+  .foto-principal img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; filter: contrast(1.06); }
+  .foto-campo { position: absolute; right: 0; bottom: 0; width: 38%; margin: 0; border-radius: 16px; overflow: hidden; aspect-ratio: 3 / 4; border: 6px solid var(--carbon); }
+  .foto-campo img { width: 100%; height: 100%; object-fit: cover; }
+  .foto-campo figcaption { position: absolute; left: 10px; bottom: 10px; font-size: 10px; color: var(--ivory); background: rgb(11 11 11 / 0.6); padding: 5px 8px; border-radius: 6px; }
+  .sobre-texto { display: grid; gap: 22px; justify-items: start; }
+  .sobre h2 { font-size: clamp(3rem, 6.6vw, 5.8rem); letter-spacing: -0.055em; }
+  .ponto { color: var(--champagne); }
+  .sobre-lead { font-size: clamp(20px, 2vw, 25px); line-height: 1.42; letter-spacing: -0.015em; }
+  .sobre-texto > p:not(.sobre-lead):not(.sobre-local) { color: var(--muted); font-size: 18px; max-width: 50ch; }
+  .sobre-local { color: var(--muted-2); }
+  .sobre-fit { margin-top: 4px; font-size: 15px; color: var(--muted); }
+  @supports (animation-timeline: view()) {
+    .foto-principal img { animation-name: foto-zoom; animation-timing-function: linear; animation-fill-mode: both; animation-duration: auto; }
+    .sobre-fotos .foto-principal img { animation-timeline: view(); }
+    @keyframes foto-zoom { from { transform: scale(1.14); } to { transform: scale(1); } }
+  }
+  @media (max-width: 900px) { .sobre-grade { grid-template-columns: 1fr; } .sobre-fotos { max-width: 460px; } }
+</style>

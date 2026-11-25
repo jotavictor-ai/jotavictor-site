@@ -1,0 +1,90 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import VisualCase from '../../components/VisualCase.astro';
+import Contato from '../../components/Contato.astro';
+import Seta from '../../components/Seta.astro';
+
+export async function getStaticPaths() {
+  const todos = (await getCollection('trabalhos', ({ data }) => data.visivel)).sort((a, b) => a.data.ordem - b.data.ordem);
+  return todos.map((t, i) => ({ params: { slug: t.id }, props: { trabalho: t, proximo: todos[(i + 1) % todos.length] } }));
+}
+const { trabalho, proximo } = Astro.props;
+const d = trabalho.data;
+const { Content } = await render(trabalho);
+const titulo = `${d.cliente} · ${d.categoria} · João Victor`;
+---
+<Base titulo={titulo} descricao={`${d.chamada} ${d.resumo}`}>
+  <article class="pagina-case">
+    <header class="wrap pc-topo">
+      <a class="pc-voltar mono" href="/#trabalhos">← Todos os trabalhos</a>
+      <p class="eyebrow">{d.categoria}</p>
+      <h1>{d.cliente}</h1>
+      <p class="pc-chamada">{d.chamada}</p>
+      <dl class="pc-ficha">
+        <div><dt class="mono">Status</dt><dd>{d.selo}</dd></div>
+        <div><dt class="mono">Ano</dt><dd>{d.ano}</dd></div>
+        <div><dt class="mono">Entrega</dt><dd>{d.tags.join(' · ')}</dd></div>
+        {d.url && <div><dt class="mono">Site</dt><dd><a class="link-seta" href={d.url} target="_blank" rel="noopener">{d.urlRotulo ?? 'Ver o site'}<Seta /></a></dd></div>}
+      </dl>
+    </header>
+    <div class="wrap pc-visual"><VisualCase trabalho={trabalho} prioridade /></div>
+    <div class="wrap pc-corpo">
+      <p class="pc-resumo">{d.resumo}</p>
+      <div class="pc-texto"><Content /></div>
+    </div>
+    {d.extras.length > 0 && (
+      <div class="wrap pc-extras">
+        {d.extras.map((x) => x.tipo === 'desktop' ? (
+          <figure class="browser pc-extra-desk"><div class="browser-barra"><i></i><i></i><i></i><span>{d.cliente}</span></div>
+            <Image src={x.src} alt={x.alt} widths={[640, 960, 1400]} sizes="(max-width: 900px) 92vw, 60vw" loading="lazy" />
+          </figure>
+        ) : (
+          <figure class="phone pc-extra-cel"><div class="phone-tela"><Image src={x.src} alt={x.alt} widths={[300, 480]} sizes="(max-width: 900px) 50vw, 22vw" loading="lazy" /></div></figure>
+        ))}
+      </div>
+    )}
+    <nav class="wrap pc-proximo" aria-label="Próximo trabalho">
+      <a href={`/trabalhos/${proximo.id}/`}><span class="mono">Próximo trabalho</span><strong>{proximo.data.cliente}</strong><Seta /></a>
+    </nav>
+  </article>
+  <Contato />
+</Base>
+
+<style>
+  .pagina-case { padding-top: calc(var(--header-h) + 56px); }
+  .pc-topo { display: grid; gap: 22px; justify-items: start; }
+  .pc-voltar { color: var(--muted-2); text-decoration: none; font-size: 11.5px; }
+  .pc-voltar:hover { color: var(--champagne); }
+  .pc-topo h1 { font-size: clamp(3.2rem, 9vw, 8rem); letter-spacing: -0.055em; line-height: 0.92; }
+  .pc-chamada { font-family: var(--serif); font-style: italic; font-size: clamp(22px, 2.6vw, 32px); line-height: 1.22; max-width: 30ch; }
+  .pc-ficha { display: grid; grid-template-columns: repeat(4, auto); gap: 18px 48px; margin: 18px 0 0; padding-top: 24px; border-top: 1px solid var(--line); width: 100%; }
+  .pc-ficha div { display: grid; gap: 6px; }
+  .pc-ficha dt { color: var(--muted-2); font-size: 10.5px; }
+  .pc-ficha dd { margin: 0; font-size: 15.5px; }
+  .pc-visual { margin-top: clamp(48px, 7vw, 96px); }
+  .pc-corpo { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 96px); margin-top: clamp(72px, 9vw, 130px); }
+  .pc-resumo { font-size: clamp(20px, 2vw, 24px); line-height: 1.42; letter-spacing: -0.015em; }
+  .pc-texto { color: var(--muted); font-size: 18px; }
+  .pc-texto :global(h2) { color: var(--ivory); font-size: clamp(1.5rem, 2.4vw, 2rem); letter-spacing: -0.035em; margin: 48px 0 16px; }
+  .pc-texto :global(h2:first-child) { margin-top: 0; }
+  .pc-texto :global(p) { margin: 0 0 14px; }
+  .pc-texto :global(ul) { padding-left: 0; list-style: none; display: grid; gap: 12px; margin: 0 0 14px; }
+  .pc-texto :global(li) { padding-left: 22px; position: relative; }
+  .pc-texto :global(li)::before { content: ''; position: absolute; left: 0; top: 0.72em; width: 10px; height: 1px; background: var(--champagne); }
+  .pc-texto :global(strong) { color: var(--ivory); font-weight: 600; }
+  .pc-extras { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 56px); align-items: end; margin-top: clamp(72px, 9vw, 130px); }
+  .pc-extras figure { margin: 0; }
+  .pc-proximo { margin-top: clamp(80px, 10vw, 140px); border-top: 1px solid var(--line); }
+  .pc-proximo a { display: flex; align-items: baseline; gap: 20px; padding: 40px 0 0; text-decoration: none; flex-wrap: wrap; }
+  .pc-proximo .mono { color: var(--muted-2); }
+  .pc-proximo strong { font-size: clamp(2.2rem, 5vw, 4rem); letter-spacing: -0.05em; font-weight: 600; transition: color 0.3s; }
+  .pc-proximo a:hover strong { color: var(--champagne); }
+  @media (max-width: 900px) {
+    .pc-ficha { grid-template-columns: 1fr 1fr; }
+    .pc-corpo { grid-template-columns: 1fr; }
+    .pc-extras { grid-template-columns: 1fr; }
+    .pc-extra-cel { width: 62%; justify-self: center; }
+  }
+</style>

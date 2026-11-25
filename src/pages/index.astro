@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Trabalhos from '../components/Trabalhos.astro';
+import Desafios from '../components/Desafios.astro';
+import Laboratorio from '../components/Laboratorio.astro';
+import Sobre from '../components/Sobre.astro';
+import Contato from '../components/Contato.astro';
+import { contato, site } from '../data/site';
+
+const url = 'https://jotavictor.com/';
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': `${url}#joao`,
+    name: 'João Victor Gonçalves',
+    alternateName: 'Jota Victor',
+    url,
+    image: `${url}og.jpg`,
+    jobTitle: 'Desenvolvedor de sites, sistemas e inteligência artificial',
+    address: { '@type': 'PostalAddress', addressLocality: 'Natal', addressRegion: 'RN', addressCountry: 'BR' },
+    knowsAbout: ['Desenvolvimento web', 'Sistemas sob medida', 'Inteligência artificial', 'Agentes de IA', 'Automação com WhatsApp', 'Vendas no varejo farmacêutico'],
+    sameAs: [contato.instagramFit, contato.github],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': `${url}#estudio`,
+    name: 'jotavictor',
+    description: site.descricao,
+    url,
+    email: contato.email,
+    telephone: '+55 84 99688-7483',
+    founder: { '@id': `${url}#joao` },
+    address: { '@type': 'PostalAddress', addressLocality: 'Natal', addressRegion: 'RN', addressCountry: 'BR' },
+    areaServed: { '@type': 'Country', name: 'Brasil' },
+    serviceType: ['Criação de sites', 'Sistemas sob medida', 'Assistentes de inteligência artificial'],
+  },
+];
+---
+<Base jsonld={jsonld}>
+  <Hero />
+  <Trabalhos />
+  <Desafios />
+  <Laboratorio />
+  <Sobre />
+  <Contato />
+</Base>

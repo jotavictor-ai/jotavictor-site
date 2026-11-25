@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base titulo="Página não encontrada · jotavictor" descricao="Essa página não existe. Volte para o início do jotavictor.com.">
+  <section class="wrap nao-achou">
+    <p class="eyebrow">Erro 404</p>
+    <h1>Essa página <em class="acento">não existe.</em></h1>
+    <a class="btn btn-primario" href="/">Voltar para o início</a>
+  </section>
+</Base>
+<style>
+  .nao-achou { min-height: 80vh; display: grid; align-content: center; justify-items: start; gap: 28px; padding-top: var(--header-h); }
+  .nao-achou h1 { font-size: clamp(2.8rem, 8vw, 6.4rem); letter-spacing: -0.05em; }
+</style>

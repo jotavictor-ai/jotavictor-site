@@ -1,0 +1,26 @@
+---
+import IconeZap from './IconeZap.astro';
+import { contato } from '../data/site';
+const base = Astro.url.pathname === '/' ? '' : '/';
+---
+<header class="topo" data-topo>
+  <div class="wrap">
+    <a class="marca" href="/" aria-label="jotavictor, início">jotavictor<b>.</b></a>
+    <nav class="nav" aria-label="Principal">
+      <a href={`${base}#trabalhos`}>Trabalhos</a>
+      <a href={`${base}#sobre`}>Sobre</a>
+      <a href={`${base}#contato`}>Contato</a>
+      <a class="btn btn-primario" href={contato.whatsapp} target="_blank" rel="noopener"><IconeZap />Vamos conversar</a>
+    </nav>
+    <details class="menu">
+      <summary><span class="linhas" aria-hidden="true"></span>Menu</summary>
+      <nav class="menu-painel" aria-label="Principal no celular">
+        <a href={`${base}#trabalhos`}>Trabalhos</a>
+        <a href={`${base}#desafios`}>O que posso construir</a>
+        <a href={`${base}#sobre`}>Sobre</a>
+        <a href={`${base}#contato`}>Contato</a>
+        <a class="btn btn-primario" href={contato.whatsapp} target="_blank" rel="noopener"><IconeZap />Chamar no WhatsApp</a>
+      </nav>
+    </details>
+  </div>
+</header>
