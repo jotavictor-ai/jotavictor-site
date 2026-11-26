@@ -7,7 +7,7 @@ resumo: O site organiza consultoria, formação para profissionais, método DPS 
 selo: Entregue
 tags: [Estratégia digital, Design, Desenvolvimento]
 ano: 2026
-url: https://victor-oliveira-vo2.vercel.app
+url: https://victoroliveira2.com
 urlRotulo: Ver o site
 desktop: ../../assets/trabalhos/victor-oliveira/home-desktop.png
 celular: ../../assets/trabalhos/victor-oliveira/home-celular.png
@@ -33,4 +33,4 @@ O professor Victor Oliveira tinha consultoria, curso para profissionais, um mét
 
 ## Resultado
 
-Site aprovado pelo Victor e em migração para o domínio oficial.
+Site aprovado pelo Victor e no ar no domínio dele, victoroliveira2.com.

@@ -78,7 +78,7 @@ Um site à altura de uma instituição empresarial.
 Serviços para o lojista, notícias, campanhas, eventos e galerias num só lugar, com painel para a própria equipe publicar. O acervo do site anterior foi trazido junto.
 Tags: Site institucional · Painel editorial
 Selo: `ENTREGUE`
-Link: site oficial quando o domínio virar (campo `url` do case).
+Link: https://cdl-balsas-web.vercel.app até o cdlbalsas.org.br virar (hoje ainda mostra o WordPress antigo); trocar o campo `url` do case.
 
 **03 · Posicionamento digital**
 **Victor Oliveira**
@@ -86,7 +86,7 @@ Cursos, consultoria e autoridade profissional numa experiência só.
 O site organiza consultoria, formação para profissionais, método DPS e livro, e leva cada visitante para o caminho certo.
 Tags: Estratégia digital · Design · Desenvolvimento
 Selo: `ENTREGUE`
-Link: victoroliveira2.com quando a migração terminar (hoje mostra página de domínio estacionado da Hostinger).
+Link: https://victoroliveira2.com (no ar desde 26/11/2026, Cloudflare do Victor; o endereço antigo na Vercel foi apagado).
 
 ### 02b. Representante comercial (João, 26/11/2026: caminhos A + B)
 
