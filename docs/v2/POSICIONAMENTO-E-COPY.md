@@ -88,6 +88,20 @@ Tags: Estratégia digital · Design · Desenvolvimento
 Selo: `ENTREGUE`
 Link: victoroliveira2.com quando a migração terminar (hoje mostra página de domínio estacionado da Hostinger).
 
+### 02b. Representante comercial (João, 26/11/2026: caminhos A + B)
+
+Credencial na abertura: `Representante comercial no varejo farmacêutico / Desenvolvedor` (no celular, sem "no varejo farmacêutico"), com link para esta seção.
+
+Etiqueta: `REPRESENTANTE COMERCIAL`
+Título: **Eu também vendo.** *Por isso construo diferente.*
+Apoio: Meu dia começa no varejo farmacêutico: visita, balcão, pedido e meta. É dali que saem as melhores ideias e os testes mais honestos.
+
+1. **Sei como uma farmácia compra.** Por isso o assistente da Rede Vidal fala de meta, margem e reposição, do jeito que a gestão já pensa.
+2. **Testo no meu próprio campo.** O CatálogoZap nasceu da minha rotina de representante e é usado nas minhas visitas com a linha Opella.
+3. **Começo pelo resultado.** Quem decide quer vender mais e perder menos tempo. Cada sistema que eu faço parte dessa conta.
+
+Fotos: camisa Opella com mochila (espelhada para o logo ficar legível) e no carro com a camisa de trabalho. A seção "Do campo ao código" com a estrada foi removida (João não gostou da frase nem da qualidade da foto).
+
 ### 03. O que posso construir
 
 Etiqueta: `O QUE POSSO CONSTRUIR`

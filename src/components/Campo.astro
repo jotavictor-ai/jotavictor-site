@@ -1,51 +1,74 @@
 ---
 import { Image } from 'astro:assets';
-import estrada from '../assets/joao/estrada-larga.webp';
+import opella from '../assets/joao/campo-opella.webp';
+import carro from '../assets/joao/campo-carro.webp';
+const verdades = [
+  { t: 'Sei como uma farmácia compra.', d: 'Por isso o assistente da Rede Vidal fala de meta, margem e reposição, do jeito que a gestão já pensa.' },
+  { t: 'Testo no meu próprio campo.', d: 'O CatálogoZap nasceu da minha rotina de representante e é usado nas minhas visitas com a linha Opella.' },
+  { t: 'Começo pelo resultado.', d: 'Quem decide quer vender mais e perder menos tempo. Cada sistema que eu faço parte dessa conta.' },
+];
 ---
-<section class="campo" aria-labelledby="campo-titulo">
-  <div class="campo-palco">
-    <div class="campo-foto">
-      <Image src={estrada} alt="Mão no volante numa estrada aberta, a caminho de clientes." widths={[640, 1000, 1400]} sizes="100vw" loading="lazy" />
-    </div>
+<section id="campo" class="secao campo" aria-labelledby="campo-titulo">
+  <div class="wrap campo-grade">
     <div class="campo-texto">
-      <p class="eyebrow">Do campo ao código</p>
-      <h2 id="campo-titulo"><span class="l1">De dia, farmácia,</span> <span class="l2">balcão e negociação.</span> <span class="l3"><em class="acento">De noite, código.</em></span></h2>
+      <p class="eyebrow">Representante comercial</p>
+      <h2 id="campo-titulo">Eu também vendo. <em class="acento">Por isso construo diferente.</em></h2>
+      <p class="campo-lead">Meu dia começa no varejo farmacêutico: visita, balcão, pedido e meta. É dali que saem as melhores ideias e os testes mais honestos.</p>
+      <ol class="verdades">
+        {verdades.map((v, i) => (
+          <li><span class="v-num mono">0{i + 1}</span><div><h3>{v.t}</h3><p>{v.d}</p></div></li>
+        ))}
+      </ol>
+    </div>
+    <div class="campo-fotos">
+      <figure class="cf-principal">
+        <Image src={opella} alt="João Victor com a camisa de trabalho de representante comercial e mochila nas costas." widths={[420, 640, 900]} sizes="(max-width: 900px) 72vw, 34vw" loading="lazy" />
+        <figcaption class="mono">Em campo</figcaption>
+      </figure>
+      <figure class="cf-carro">
+        <Image src={carro} alt="João Victor no carro, de camisa de trabalho, a caminho de clientes." widths={[260, 420, 600]} sizes="(max-width: 900px) 42vw, 17vw" loading="lazy" />
+        <figcaption class="mono">Na rota</figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
 <style>
-  .campo { position: relative; }
-  .campo-palco { position: relative; min-height: 100vh; min-height: 100svh; display: grid; align-items: end; overflow: clip; }
-  .campo-foto { position: absolute; inset: 0; }
-  .campo-foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; filter: brightness(0.78) saturate(0.85) contrast(1.05); }
-  .campo-foto::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(11 11 11 / 0.45), rgb(11 11 11 / 0.15) 32%, rgb(11 11 11 / 0.92) 86%), linear-gradient(90deg, rgb(11 11 11 / 0.55), transparent 60%); }
-  .campo-texto { position: relative; width: min(100% - 2 * var(--gutter), var(--wrap)); margin: 0 auto; padding-bottom: clamp(56px, 9vh, 110px); display: grid; gap: 22px; }
-  .campo h2 { font-size: clamp(2.6rem, 7.4vw, 7rem); letter-spacing: -0.055em; line-height: 0.98; max-width: 14ch; }
-  .campo h2 span { display: block; }
+  .campo { background: var(--carbon-2); border-block: 1px solid var(--line); overflow: clip; }
+  .campo-grade { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(40px, 7vw, 110px); align-items: center; }
+  .campo-texto { display: grid; gap: 24px; }
+  .campo h2 { font-size: clamp(2.4rem, 5vw, 4.3rem); letter-spacing: -0.05em; }
+  .campo h2 .acento { display: block; }
+  .campo-lead { color: var(--muted); font-size: clamp(17px, 1.6vw, 20px); max-width: 46ch; }
+  .verdades { list-style: none; margin: 14px 0 0; padding: 0; border-top: 1px solid var(--line); }
+  .verdades li { display: grid; grid-template-columns: 48px 1fr; gap: 16px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+  .v-num { color: var(--champagne); padding-top: 6px; }
+  .verdades h3 { font-size: clamp(1.25rem, 1.9vw, 1.6rem); letter-spacing: -0.03em; line-height: 1.15; }
+  .verdades p { color: var(--muted); margin-top: 8px; font-size: 16.5px; max-width: 48ch; }
 
-  /* A foto começa como um cartão e abre até ocupar a tela; as linhas do título deslizam em sentidos opostos */
+  .campo-fotos { position: relative; padding: 0 0 14% 16%; }
+  .campo-fotos figure { margin: 0; overflow: hidden; position: relative; background: var(--graphite); }
+  .cf-principal { border-radius: 24px; aspect-ratio: 3 / 4; box-shadow: 0 50px 90px -40px #000; }
+  .cf-principal img, .cf-carro img { width: 100%; height: 100%; object-fit: cover; }
+  .cf-principal img { object-position: 45% 30%; }
+  .campo-fotos .cf-carro { position: absolute; left: 0; top: 56%; width: 42%; z-index: 2; aspect-ratio: 4 / 5; border-radius: 18px; border: 6px solid var(--carbon-2); }
+  .cf-carro img { object-position: 50% 35%; }
+  .campo-fotos figcaption { position: absolute; left: 12px; bottom: 12px; font-size: 10px; color: var(--ivory); background: rgb(11 11 11 / 0.62); padding: 6px 9px; border-radius: 6px; backdrop-filter: blur(6px); }
+  .cf-principal figcaption { left: auto; right: 14px; top: 14px; bottom: auto; background: var(--champagne); color: var(--carbon); }
+
   @supports (animation-timeline: view()) {
-    .campo { height: 210vh; }
-    .campo-palco { position: sticky; top: 0; height: 100vh; height: 100svh; }
-    .campo-foto, .campo-foto img, .campo h2 .l1, .campo h2 .l2, .campo h2 .l3 { animation-timing-function: linear; animation-fill-mode: both; animation-duration: auto; }
-    .campo-foto { animation-name: abre-foto; }
-    .campo-foto img { animation-name: foto-afasta; }
-    .campo h2 .l1 { animation-name: da-esquerda; }
-    .campo h2 .l2 { animation-name: da-direita; }
-    .campo h2 .l3 { animation-name: de-baixo; }
-    .campo > .campo-palco .campo-foto, .campo > .campo-palco .campo-foto img, .campo > .campo-palco h2 span { animation-timeline: --campo; animation-range: contain 0% contain 50%; }
-    .campo { view-timeline: --campo block; }
-    @keyframes abre-foto { from { clip-path: inset(14% 16% 14% 16% round 32px); } to { clip-path: inset(0 round 0); } }
-    @keyframes foto-afasta { from { transform: scale(1.3); } to { transform: scale(1); } }
-    @keyframes da-esquerda { from { transform: translateX(-14%); opacity: 0.15; } }
-    @keyframes da-direita { from { transform: translateX(14%); opacity: 0.15; } }
-    @keyframes de-baixo { from { transform: translateY(60%); opacity: 0.15; } }
+    .cf-principal, .cf-principal img, .cf-carro { animation-timing-function: linear; animation-fill-mode: both; animation-duration: auto; }
+    .cf-principal { animation-name: cf-cortina; }
+    .cf-principal img { animation-name: cf-zoom; }
+    .cf-carro { animation-name: cf-sobe; }
+    .campo-fotos > .cf-principal { animation-timeline: view(); animation-range: entry 0% cover 40%; }
+    .campo-fotos > .cf-principal img, .campo-fotos > .cf-carro { animation-timeline: view(); }
+    @keyframes cf-cortina { from { clip-path: inset(30% 0 0 0 round 24px); } to { clip-path: inset(0 round 24px); } }
+    @keyframes cf-zoom { from { transform: scale(1.16); } to { transform: scale(1); } }
+    @keyframes cf-sobe { from { transform: translateY(10px) rotate(-6deg); } to { transform: translateY(-70px) rotate(2deg); } }
   }
-  @media (max-width: 700px) {
-    .campo-foto img { object-position: 62% 55%; }
-    @supports (animation-timeline: view()) {
-      @keyframes abre-foto { from { clip-path: inset(10% 6% 10% 6% round 26px); } to { clip-path: inset(0 round 0); } }
-    }
+  @media (max-width: 900px) {
+    .campo-grade { grid-template-columns: 1fr; }
+    .campo-fotos { order: -1; max-width: 480px; width: 100%; justify-self: center; }
   }
 </style>

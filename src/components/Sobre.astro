@@ -2,19 +2,17 @@
 import { Image } from 'astro:assets';
 import Seta from './Seta.astro';
 import { contato } from '../data/site';
-import retrato from '../assets/joao/corpo.webp';
-import estrada from '../assets/joao/estrada.webp';
+import retrato from '../assets/joao/sobre-vinho.webp';
+import estrada from '../assets/joao/corpo.webp';
 ---
 <section id="sobre" class="secao sobre" aria-labelledby="sobre-titulo">
   <div class="wrap sobre-grade">
     <div class="sobre-fotos">
       <figure class="foto-principal">
-        <span class="foto-etiqueta mono">No varejo</span>
-        <Image src={retrato} alt="João Victor, de preto, entre as prateleiras de uma loja." widths={[420, 640, 900]} sizes="(max-width: 900px) 80vw, 36vw" loading="lazy" />
+        <Image src={retrato} alt="João Victor, de camisa vinho, em pé." widths={[420, 640, 900]} sizes="(max-width: 900px) 80vw, 36vw" loading="lazy" />
       </figure>
       <figure class="foto-campo">
-        <Image src={estrada} alt="Estrada vista de dentro do carro, a caminho de clientes." widths={[260, 420]} sizes="(max-width: 900px) 36vw, 15vw" loading="lazy" />
-        <figcaption class="mono">Na estrada</figcaption>
+        <Image src={estrada} alt="João Victor, de preto." widths={[260, 420]} sizes="(max-width: 900px) 36vw, 15vw" loading="lazy" />
       </figure>
     </div>
     <div class="sobre-texto">
