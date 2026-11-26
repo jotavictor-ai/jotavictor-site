@@ -7,7 +7,7 @@ export const contato = {
   whatsappTexto: '(84) 99688-7483',
   email: 'contato@jotavictor.com',
   instagramFit: 'https://www.instagram.com/jotav.fit/',
-  github: 'https://github.com/joaovsgoncalves',
+  github: 'https://github.com/jotavictor-ai',
 };
 
 export const whatsappCom = (texto: string) =>
