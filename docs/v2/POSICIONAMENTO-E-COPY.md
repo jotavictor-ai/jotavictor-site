@@ -90,7 +90,7 @@ Link: victoroliveira2.com quando a migração terminar (hoje mostra página de d
 
 ### 02b. Representante comercial (João, 26/11/2026: caminhos A + B)
 
-Credencial na abertura: `Representante comercial no varejo farmacêutico / Desenvolvedor` (no celular, sem "no varejo farmacêutico"), com link para esta seção.
+Credencial na abertura: `Representante comercial no varejo farmacêutico / Forward Deployed AI Engineer` (cargo escolhido por João em 26/11; em inglês para não usar "Engenheiro" em português) (no celular, sem "no varejo farmacêutico"), com link para esta seção.
 
 Etiqueta: `REPRESENTANTE COMERCIAL`
 Título: **Eu também vendo.** *Por isso construo diferente.*

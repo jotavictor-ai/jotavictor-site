@@ -19,7 +19,7 @@ const palavras = ['Eu', 'construo', 'o', 'que', 'o', 'seu', 'negócio'];
       </h1>
       <div class="hero-linha">
         <p class="hero-sub">Sites, sistemas e inteligência artificial. Do problema real à solução funcionando.</p>
-        <p class="credencial"><a href="#campo"><span class="c-ponto" aria-hidden="true"></span>Representante comercial<span class="c-longo"> no varejo farmacêutico</span> <span class="c-sep" aria-hidden="true">/</span> Desenvolvedor</a></p>
+        <p class="credencial"><a href="#campo"><span class="c-ponto" aria-hidden="true"></span>Representante comercial<span class="c-longo"> no varejo farmacêutico</span> <span class="c-sep" aria-hidden="true">/</span> <span class="c-cargo">Forward Deployed AI Engineer</span></a></p>
         <div class="hero-acoes">
           <a class="btn btn-primario" href="#trabalhos" data-ima>Ver trabalhos</a>
           <a class="btn btn-linha" href={contato.whatsapp} target="_blank" rel="noopener" data-ima><IconeZap />Chamar no WhatsApp</a>
@@ -115,7 +115,8 @@ const palavras = ['Eu', 'construo', 'o', 'que', 'o', 'seu', 'negócio'];
   .credencial a { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; font: 450 12px/1.5 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; padding: 9px 14px; border: 1px solid var(--line-2); border-radius: 999px; transition: border-color 0.3s, color 0.3s; }
   .credencial a:hover { border-color: var(--champagne); color: var(--ivory); }
   .c-sep { color: var(--champagne); }
-  @media (max-width: 560px) { .c-longo { display: none; } .credencial a { font-size: 11px; letter-spacing: 0.08em; } }
+  .c-cargo { white-space: nowrap; color: var(--ivory); }
+  @media (max-width: 560px) { .c-longo { display: none; } .credencial a { font-size: 10.5px; letter-spacing: 0.05em; border-radius: 16px; row-gap: 4px; } }
   .c-ponto { width: 7px; height: 7px; border-radius: 50%; background: #5fd18b; box-shadow: 0 0 0 0 rgb(95 209 139 / 0.6); animation: c-pulso 2.2s ease-out infinite; }
   @keyframes c-pulso { to { box-shadow: 0 0 0 8px rgb(95 209 139 / 0); } }
   .hero-acoes { display: flex; flex-wrap: wrap; gap: 12px; }
