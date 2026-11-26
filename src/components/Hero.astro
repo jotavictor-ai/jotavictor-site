@@ -5,19 +5,38 @@ import ConversaRise from './vidal/ConversaRise.astro';
 import { contato } from '../data/site';
 import cdl from '../assets/trabalhos/cdl-balsas/home-desktop.png';
 import vo2 from '../assets/trabalhos/victor-oliveira/home-desktop.png';
+import retrato from '../assets/joao/retrato.webp';
+const palavras = ['Eu', 'construo', 'o', 'que', 'o', 'seu', 'negócio'];
 ---
 <section class="hero" data-hero aria-labelledby="hero-titulo">
   <div class="hero-luz" aria-hidden="true"></div>
-  <div class="wrap hero-texto">
-    <p class="eyebrow">Estúdio independente de tecnologia · Natal, Brasil</p>
-    <h1 id="hero-titulo">Eu construo o que o seu negócio <em class="acento">precisa.</em></h1>
-    <div class="hero-linha">
-      <p class="hero-sub">Sites, sistemas e inteligência artificial. Do problema real à solução funcionando.</p>
-      <div class="hero-acoes">
-        <a class="btn btn-primario" href="#trabalhos">Ver trabalhos</a>
-        <a class="btn btn-linha" href={contato.whatsapp} target="_blank" rel="noopener"><IconeZap />Chamar no WhatsApp</a>
+  <div class="wrap hero-topo">
+    <div class="hero-texto">
+      <p class="eyebrow">Estúdio independente de tecnologia · Natal, Brasil</p>
+      <h1 id="hero-titulo" aria-label="Eu construo o que o seu negócio precisa.">
+        {palavras.map((p, i) => <span class="w" aria-hidden="true"><span style={`--i:${i}`}>{p}</span></span>)}
+        <span class="w" aria-hidden="true"><span style={`--i:${palavras.length}`}><em class="acento">precisa.</em></span></span>
+      </h1>
+      <div class="hero-linha">
+        <p class="hero-sub">Sites, sistemas e inteligência artificial. Do problema real à solução funcionando.</p>
+        <div class="hero-acoes">
+          <a class="btn btn-primario" href="#trabalhos" data-ima>Ver trabalhos</a>
+          <a class="btn btn-linha" href={contato.whatsapp} target="_blank" rel="noopener" data-ima><IconeZap />Chamar no WhatsApp</a>
+        </div>
       </div>
     </div>
+    <figure class="retrato">
+      <div class="retrato-moldura">
+        <Image src={retrato} alt="João Victor, de camisa preta, sentado à mesa." widths={[360, 560, 820]} sizes="(max-width: 900px) 64vw, 30vw" loading="eager" fetchpriority="high" />
+      </div>
+      <figcaption class="mono"><span>João Victor</span><span>Natal, RN</span></figcaption>
+      <svg class="selo-gira" viewBox="0 0 120 120" aria-hidden="true">
+        <defs><path id="circulo" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0" /></defs>
+        <circle class="disco" cx="60" cy="60" r="59" />
+        <text><textPath href="#circulo" textLength="286" lengthAdjust="spacing">SITES · SISTEMAS · IA · NATAL · </textPath></text>
+        <circle class="ponto" cx="60" cy="60" r="5" />
+      </svg>
+    </figure>
   </div>
 
   <div class="palco">
@@ -49,18 +68,50 @@ import vo2 from '../assets/trabalhos/victor-oliveira/home-desktop.png';
 
 <style>
   .hero { position: relative; padding: calc(var(--header-h) + clamp(36px, 7vh, 88px)) 0 clamp(56px, 8vw, 96px); overflow: clip; isolation: isolate; }
+  .hero::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(520px circle at var(--mx, 70%) var(--my, 30%), rgb(201 169 110 / 0.13), transparent 65%); }
   .hero-luz { position: absolute; inset: auto -20% -10% -20%; height: 75%; z-index: -1;
     background: radial-gradient(50% 55% at 50% 60%, rgb(201 169 110 / 0.2), rgb(201 169 110 / 0.05) 45%, transparent 70%);
     animation: luz-respira 9s ease-in-out infinite alternate; }
   .hero-texto { display: grid; gap: 26px; justify-items: start; }
-  .hero h1 { font-size: clamp(2.9rem, 8vw, 7rem); letter-spacing: -0.05em; line-height: 0.95; max-width: 13ch; }
+  /* Topo: texto + retrato */
+  .hero-topo { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.75fr); gap: clamp(32px, 5vw, 80px); align-items: end; }
+  .hero h1 { position: relative; z-index: 2; }
+  .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 0.04em 0.1em 0; margin: 0 0.2em -0.1em 0; }
+  .w:last-child { margin-right: 0; }
+  .w > span { display: inline-block; animation: palavra 1.1s var(--ease) both; animation-delay: calc(0.12s + var(--i) * 0.075s); }
+  @keyframes palavra { from { transform: translateY(108%) rotate(4deg); } }
+  .hero-sub, .hero-acoes, .hero .eyebrow { animation: surge 1s var(--ease) both 0.75s; }
+  .hero .eyebrow { animation-delay: 0s; }
+  @keyframes surge { from { transform: translateY(18px); opacity: 0.2; } }
+
+  .retrato { position: relative; margin: 0; justify-self: end; width: 100%; max-width: 420px; }
+  .retrato-moldura { border-radius: 22px; overflow: hidden; aspect-ratio: 4 / 5; background: var(--graphite); position: relative;
+    clip-path: inset(0 round 22px); animation: cortina 1.5s var(--ease) both 0.2s; box-shadow: 0 50px 90px -40px #000; }
+  .retrato-moldura::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgb(11 11 11 / 0.55)); }
+  .retrato img { width: 100%; height: 100%; object-fit: cover; object-position: 55% 22%; animation: aproxima 2.6s var(--ease) both 0.2s; }
+  @keyframes cortina { from { clip-path: inset(100% 0 0 0 round 22px); } }
+  @keyframes aproxima { from { transform: scale(1.22); } }
+  .retrato figcaption { position: absolute; left: 18px; right: 18px; bottom: 16px; display: flex; justify-content: space-between; font-size: 11px; color: var(--ivory); z-index: 1; }
+  .retrato figcaption span:last-child { color: var(--champagne); }
+  .selo-gira { position: absolute; left: -54px; top: 18%; width: 112px; height: 112px; z-index: 3; animation: gira 16s linear infinite, surge 1s var(--ease) both 1.2s; }
+  .selo-gira text { font: 500 9.4px var(--mono); fill: var(--ivory); }
+  .selo-gira .ponto { fill: var(--champagne); }
+  .selo-gira .disco { fill: var(--carbon); stroke: rgb(201 169 110 / 0.45); stroke-width: 1; }
+  .selo-gira::before { content: ''; }
+  @keyframes gira { to { rotate: 360deg; } }
+  @supports (animation-timeline: scroll()) {
+    .retrato .retrato-moldura img { animation-name: aproxima, desce; animation-duration: 2.6s, auto; animation-timing-function: var(--ease), linear; animation-fill-mode: both, both; animation-delay: 0.2s, 0s; }
+    .hero-topo .retrato .retrato-moldura img { animation-timeline: auto, scroll(root); animation-range: normal, 0 100vh; }
+    @keyframes desce { to { object-position: 55% 0%; translate: 0 6%; } }
+  }
+
+  .hero h1 { font-size: clamp(2.9rem, 7.2vw, 6.6rem); letter-spacing: -0.05em; line-height: 0.95; max-width: 12ch; }
   .hero h1 .acento { padding-right: 0.06em; }
   .hero-sub { font-size: clamp(18px, 1.9vw, 22px); color: var(--muted); max-width: 34ch; line-height: 1.45; }
   .hero-linha { display: grid; gap: 26px; width: 100%; }
   .hero-acoes { display: flex; flex-wrap: wrap; gap: 12px; }
-  @media (min-width: 1100px) {
-    .hero-linha { grid-template-columns: 1fr auto; align-items: end; gap: 48px; margin-top: 4px; }
-  }
+
 
   /* Palco: três telas reais */
   .palco { position: relative; margin: clamp(48px, 6vw, 84px) auto 0; width: min(100% - 2 * var(--gutter), 1320px); height: clamp(380px, 44vw, 620px); perspective: 2000px; }
@@ -103,6 +154,18 @@ import vo2 from '../assets/trabalhos/victor-oliveira/home-desktop.png';
   .hero-legenda { margin-top: clamp(56px, 7vw, 96px); display: flex; gap: 8px; justify-content: center; color: var(--muted-2); }
   .hero-legenda span:last-child { color: var(--champagne); }
 
+
+  @media (max-width: 900px) {
+    .hero-topo { grid-template-columns: 1fr; gap: 0; }
+    .hero-texto { display: contents; }
+    .hero .eyebrow { order: -2; margin-bottom: 18px; }
+    .hero h1 { margin-bottom: 22px; }
+    .hero-linha { gap: 22px; }
+    .retrato { order: -1; width: 66%; max-width: 330px; justify-self: end; margin-bottom: -16%; }
+    .retrato figcaption { display: none; }
+    .selo-gira { left: -40px; top: auto; bottom: 22%; width: 88px; height: 88px; }
+    .hero h1 { text-shadow: 0 2px 30px rgb(0 0 0 / 0.6); }
+  }
   @media (max-width: 900px) {
     .palco { height: auto; aspect-ratio: 1 / 1.18; max-width: 520px; perspective: 1400px; }
     .tela-esq, .tela-dir { width: 74%; top: 14%; }

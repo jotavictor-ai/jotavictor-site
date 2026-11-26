@@ -1,0 +1,32 @@
+---
+// Faixa de serviços em movimento. A primeira linha corre sozinha; a segunda anda com a rolagem.
+const itens = ['Sites institucionais', 'Sistemas sob medida', 'Assistentes de IA', 'Automação no WhatsApp', 'Catálogos de venda', 'Painéis de gestão'];
+---
+<section class="faixa" aria-label="Serviços">
+  <p class="sr-only">{itens.join(', ')}.</p>
+  <div class="linha linha-1" aria-hidden="true">
+    {[0, 1].map(() => <div class="trilho">{itens.map((t, i) => <span class:list={['item', { contorno: i % 2 === 1 }]}>{t}<i>✦</i></span>)}</div>)}
+  </div>
+  <div class="linha linha-2" aria-hidden="true">
+    <div class="trilho">{[...itens].reverse().concat([...itens].reverse()).map((t) => <span class="item mini">{t}<i>·</i></span>)}</div>
+  </div>
+</section>
+
+<style>
+  .faixa { padding: clamp(28px, 4vw, 48px) 0; border-block: 1px solid var(--line); overflow: clip; display: grid; gap: 14px; background: var(--carbon-2); }
+  .linha { display: flex; width: max-content; }
+  .trilho { display: flex; flex: none; }
+  .linha-1 .trilho { animation: corre 38s linear infinite; }
+  .item { display: inline-flex; align-items: center; gap: 0.6em; padding-right: 0.6em; white-space: nowrap; font-size: clamp(2.2rem, 5.4vw, 4.6rem); font-weight: 600; letter-spacing: -0.045em; line-height: 1.1; }
+  .item i { font-style: normal; color: var(--champagne); font-size: 0.42em; }
+  .contorno { color: transparent; -webkit-text-stroke: 1px rgb(245 243 239 / 0.55); }
+  .mini { font: 450 clamp(12px, 1.1vw, 14px)/1 var(--mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-2); padding-right: 1.4em; gap: 1.4em; }
+  .mini i { font-size: 1em; }
+  @keyframes corre { to { transform: translateX(-100%); } }
+  .linha-1:hover .trilho { animation-play-state: paused; }
+  @supports (animation-timeline: view()) {
+    .linha-2 { animation-name: desliza; animation-timing-function: linear; animation-fill-mode: both; animation-duration: auto; }
+    .faixa > .linha-2 { animation-timeline: view(); }
+    @keyframes desliza { from { transform: translateX(-30%); } to { transform: translateX(0%); } }
+  }
+</style>

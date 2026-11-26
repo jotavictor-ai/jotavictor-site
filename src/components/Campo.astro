@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import estrada from '../assets/joao/estrada-larga.webp';
+---
+<section class="campo" aria-labelledby="campo-titulo">
+  <div class="campo-palco">
+    <div class="campo-foto">
+      <Image src={estrada} alt="Mão no volante numa estrada aberta, a caminho de clientes." widths={[640, 1000, 1400]} sizes="100vw" loading="lazy" />
+    </div>
+    <div class="campo-texto">
+      <p class="eyebrow">Do campo ao código</p>
+      <h2 id="campo-titulo"><span class="l1">De dia, farmácia,</span> <span class="l2">balcão e negociação.</span> <span class="l3"><em class="acento">De noite, código.</em></span></h2>
+    </div>
+  </div>
+</section>
+
+<style>
+  .campo { position: relative; }
+  .campo-palco { position: relative; min-height: 100vh; min-height: 100svh; display: grid; align-items: end; overflow: clip; }
+  .campo-foto { position: absolute; inset: 0; }
+  .campo-foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; filter: brightness(0.78) saturate(0.85) contrast(1.05); }
+  .campo-foto::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(11 11 11 / 0.45), rgb(11 11 11 / 0.15) 32%, rgb(11 11 11 / 0.92) 86%), linear-gradient(90deg, rgb(11 11 11 / 0.55), transparent 60%); }
+  .campo-texto { position: relative; width: min(100% - 2 * var(--gutter), var(--wrap)); margin: 0 auto; padding-bottom: clamp(56px, 9vh, 110px); display: grid; gap: 22px; }
+  .campo h2 { font-size: clamp(2.6rem, 7.4vw, 7rem); letter-spacing: -0.055em; line-height: 0.98; max-width: 14ch; }
+  .campo h2 span { display: block; }
+
+  /* A foto começa como um cartão e abre até ocupar a tela; as linhas do título deslizam em sentidos opostos */
+  @supports (animation-timeline: view()) {
+    .campo { height: 210vh; }
+    .campo-palco { position: sticky; top: 0; height: 100vh; height: 100svh; }
+    .campo-foto, .campo-foto img, .campo h2 .l1, .campo h2 .l2, .campo h2 .l3 { animation-timing-function: linear; animation-fill-mode: both; animation-duration: auto; }
+    .campo-foto { animation-name: abre-foto; }
+    .campo-foto img { animation-name: foto-afasta; }
+    .campo h2 .l1 { animation-name: da-esquerda; }
+    .campo h2 .l2 { animation-name: da-direita; }
+    .campo h2 .l3 { animation-name: de-baixo; }
+    .campo > .campo-palco .campo-foto, .campo > .campo-palco .campo-foto img, .campo > .campo-palco h2 span { animation-timeline: --campo; animation-range: contain 0% contain 50%; }
+    .campo { view-timeline: --campo block; }
+    @keyframes abre-foto { from { clip-path: inset(14% 16% 14% 16% round 32px); } to { clip-path: inset(0 round 0); } }
+    @keyframes foto-afasta { from { transform: scale(1.3); } to { transform: scale(1); } }
+    @keyframes da-esquerda { from { transform: translateX(-14%); opacity: 0.15; } }
+    @keyframes da-direita { from { transform: translateX(14%); opacity: 0.15; } }
+    @keyframes de-baixo { from { transform: translateY(60%); opacity: 0.15; } }
+  }
+  @media (max-width: 700px) {
+    .campo-foto img { object-position: 62% 55%; }
+    @supports (animation-timeline: view()) {
+      @keyframes abre-foto { from { clip-path: inset(10% 6% 10% 6% round 26px); } to { clip-path: inset(0 round 0); } }
+    }
+  }
+</style>

@@ -51,6 +51,7 @@ const og = new URL(imagem, Astro.site).toString();
   </head>
   <body>
     <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+    <div class="progresso" aria-hidden="true"></div>
     <Header />
     <main id="conteudo">
       <slot />

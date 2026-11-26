@@ -38,6 +38,11 @@ const host = d.url ? new URL(d.url).host : '';
   .vc-vidal .vc-cartao { transform: rotate(-2.5deg); }
   .vc-vidal .vc-phone { transform: rotate(2deg) translateY(4%); }
   .vc-nota { grid-column: 1 / -1; color: var(--muted-2); font-size: 11px; margin-top: 18px; text-align: center; }
+  @supports (animation-timeline: view()) {
+    .vc-capturas .vc-phone, .vc-vidal .vc-phone { animation-name: phone-flutua; animation-timing-function: linear; animation-fill-mode: both; animation-duration: auto; }
+    .vc > .vc-phone { animation-timeline: view(); }
+    @keyframes phone-flutua { from { translate: 0 90px; } to { translate: 0 -60px; } }
+  }
   @media (max-width: 600px) {
     .vc-vidal { grid-template-columns: 1fr; padding: 0 0 0; gap: 0; }
     .vc-vidal .vc-cartao { width: 100%; transform: none; position: relative; z-index: 1; }

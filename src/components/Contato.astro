@@ -8,7 +8,7 @@ import { contato } from '../data/site';
     <h2 id="contato-titulo">Vamos <em class="acento">conversar?</em></h2>
     <p class="contato-texto">Me conta o que tu precisa resolver. Eu respondo pelo WhatsApp e, se fizer sentido, monto uma proposta.</p>
     <div class="contato-acoes">
-      <a class="btn btn-primario btn-grande" href={contato.whatsapp} target="_blank" rel="noopener"><IconeZap />Chamar no WhatsApp</a>
+      <a data-ima class="btn btn-primario btn-grande" href={contato.whatsapp} target="_blank" rel="noopener"><IconeZap />Chamar no WhatsApp</a>
       <a class="btn btn-linha btn-grande" href={`mailto:${contato.email}`}>{contato.email}</a>
     </div>
   </div>
@@ -21,5 +21,10 @@ import { contato } from '../data/site';
   .contato h2 { font-size: clamp(3.2rem, 10vw, 8.6rem); letter-spacing: -0.055em; line-height: 0.95; }
   .contato-texto { color: var(--muted); font-size: clamp(18px, 1.8vw, 21px); max-width: 40ch; }
   .contato-acoes { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 8px; }
+  @supports (animation-timeline: view()) {
+    .contato h2 { animation-name: cresce; animation-timing-function: linear; animation-fill-mode: both; animation-duration: auto; }
+    .contato-in > h2 { animation-timeline: view(); animation-range: entry 0% cover 45%; }
+    @keyframes cresce { from { transform: scale(0.72); letter-spacing: 0.02em; } to { transform: none; letter-spacing: -0.055em; } }
+  }
   .btn-grande { min-height: 58px; padding: 0 30px; font-size: 16.5px; }
 </style>

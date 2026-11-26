@@ -5,6 +5,8 @@ import Trabalhos from '../components/Trabalhos.astro';
 import Desafios from '../components/Desafios.astro';
 import Laboratorio from '../components/Laboratorio.astro';
 import Sobre from '../components/Sobre.astro';
+import Faixa from '../components/Faixa.astro';
+import Campo from '../components/Campo.astro';
 import Contato from '../components/Contato.astro';
 import { contato, site } from '../data/site';
 
@@ -41,7 +43,9 @@ const jsonld = [
 ---
 <Base jsonld={jsonld}>
   <Hero />
+  <Faixa />
   <Trabalhos />
+  <Campo />
   <Desafios />
   <Laboratorio />
   <Sobre />
