@@ -19,7 +19,7 @@ const palavras = ['Eu', 'construo', 'o', 'que', 'o', 'seu', 'negócio'];
       </h1>
       <div class="hero-linha">
         <p class="hero-sub">Sites, sistemas e inteligência artificial. Do problema real à solução funcionando.</p>
-        <p class="credencial"><a href="#campo"><span class="c-ponto" aria-hidden="true"></span>Representante comercial<span class="c-longo"> no varejo farmacêutico</span> <span class="c-sep" aria-hidden="true">/</span> <span class="c-cargo">Engenheiro de Soluções de IA</span></a></p>
+        <p class="credencial"><a href="#campo"><span class="c-ponto" aria-hidden="true"></span>Representante comercial<span class="c-longo"> no varejo farmacêutico</span> <span class="c-sep" aria-hidden="true">/</span> <span class="c-cargo">Desenvolvedor de Soluções Digitais e IA</span></a></p>
         <div class="hero-acoes">
           <a class="btn btn-primario" href="#trabalhos" data-ima>Ver trabalhos</a>
           <a class="btn btn-linha" href={contato.whatsapp} target="_blank" rel="noopener" data-ima><IconeZap />Chamar no WhatsApp</a>
@@ -116,7 +116,8 @@ const palavras = ['Eu', 'construo', 'o', 'que', 'o', 'seu', 'negócio'];
   .credencial a:hover { border-color: var(--champagne); color: var(--ivory); }
   .c-sep { color: var(--champagne); }
   .c-cargo { white-space: nowrap; color: var(--ivory); }
-  @media (max-width: 560px) { .c-longo { display: none; } .credencial a { font-size: 10.5px; letter-spacing: 0.05em; border-radius: 16px; row-gap: 4px; } }
+  .c-longo { display: none; }
+  @media (max-width: 560px) { .credencial a { font-size: 10.5px; letter-spacing: 0.05em; border-radius: 16px; row-gap: 4px; } }
   .c-ponto { width: 7px; height: 7px; border-radius: 50%; background: #5fd18b; box-shadow: 0 0 0 0 rgb(95 209 139 / 0.6); animation: c-pulso 2.2s ease-out infinite; }
   @keyframes c-pulso { to { box-shadow: 0 0 0 8px rgb(95 209 139 / 0); } }
   .hero-acoes { display: flex; flex-wrap: wrap; gap: 12px; }

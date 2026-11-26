@@ -90,7 +90,7 @@ Link: victoroliveira2.com quando a migração terminar (hoje mostra página de d
 
 ### 02b. Representante comercial (João, 26/11/2026: caminhos A + B)
 
-Credencial na abertura: `Representante comercial no varejo farmacêutico / Engenheiro de Soluções de IA` (cargo escolhido por João em 26/11) (no celular, sem "no varejo farmacêutico"), com link para esta seção.
+Credencial na abertura: `Representante comercial no varejo farmacêutico / Desenvolvedor de Soluções Digitais e IA` (cargo escolhido por João em 26/11; "Engenheiro" evitado por ser título regulamentado). FDE entra como referência no Sobre: "Trabalho no modelo que o mercado chama de Forward Deployed Engineer: entro na operação do cliente, entendo como ela funciona e coloco a solução rodando lá dentro." (no celular, sem "no varejo farmacêutico"), com link para esta seção.
 
 Etiqueta: `REPRESENTANTE COMERCIAL`
 Título: **Eu também vendo.** *Por isso construo diferente.*
