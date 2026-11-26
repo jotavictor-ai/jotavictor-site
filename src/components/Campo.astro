@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import opella from '../assets/joao/campo-opella.webp';
 import carro from '../assets/joao/campo-carro.webp';
+import treinamento from '../assets/joao/campo-treinamento.webp';
 const verdades = [
   { t: 'Sei como uma farmácia compra.', d: 'Por isso o assistente da Rede Vidal fala de meta, margem e reposição, do jeito que a gestão já pensa.' },
   { t: 'Testo no meu próprio campo.', d: 'O CatálogoZap nasceu da minha rotina de representante e é usado nas minhas visitas com a linha Opella.' },
@@ -25,6 +26,10 @@ const verdades = [
         <Image src={opella} alt="João Victor com a camisa de trabalho de representante comercial e mochila nas costas." widths={[420, 640, 900]} sizes="(max-width: 900px) 72vw, 34vw" loading="lazy" />
         <figcaption class="mono">Em campo</figcaption>
       </figure>
+      <figure class="cf-treinamento">
+        <Image src={treinamento} alt="Treinamento comercial visto da plateia, com o notebook de trabalho aberto." widths={[260, 400, 560]} sizes="(max-width: 900px) 40vw, 15vw" loading="lazy" />
+        <figcaption class="mono">Treinamento</figcaption>
+      </figure>
       <figure class="cf-carro">
         <Image src={carro} alt="João Victor no carro, de camisa de trabalho, a caminho de clientes." widths={[260, 420, 600]} sizes="(max-width: 900px) 42vw, 17vw" loading="lazy" />
         <figcaption class="mono">Na rota</figcaption>
@@ -46,12 +51,14 @@ const verdades = [
   .verdades h3 { font-size: clamp(1.25rem, 1.9vw, 1.6rem); letter-spacing: -0.03em; line-height: 1.15; }
   .verdades p { color: var(--muted); margin-top: 8px; font-size: 16.5px; max-width: 48ch; }
 
-  .campo-fotos { position: relative; padding: 0 0 14% 16%; }
+  .campo-fotos { position: relative; padding: 0 0 14% 24%; }
   .campo-fotos figure { margin: 0; overflow: hidden; position: relative; background: var(--graphite); }
   .cf-principal { border-radius: 24px; aspect-ratio: 3 / 4; box-shadow: 0 50px 90px -40px #000; }
   .cf-principal img, .cf-carro img { width: 100%; height: 100%; object-fit: cover; }
   .cf-principal img { object-position: 45% 30%; }
-  .campo-fotos .cf-carro { position: absolute; left: 0; top: 56%; width: 42%; z-index: 2; aspect-ratio: 4 / 5; border-radius: 18px; border: 6px solid var(--carbon-2); }
+  .campo-fotos .cf-treinamento { position: absolute; left: 0; top: 4%; width: 38%; aspect-ratio: 3 / 4; z-index: 2; border-radius: 18px; border: 6px solid var(--carbon-2); transform: rotate(-3deg); }
+  .cf-treinamento img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 40%; }
+  .campo-fotos .cf-carro { position: absolute; left: 4%; top: 58%; width: 40%; z-index: 3; aspect-ratio: 4 / 5; border-radius: 18px; border: 6px solid var(--carbon-2); }
   .cf-carro img { object-position: 50% 35%; }
   .campo-fotos figcaption { position: absolute; left: 12px; bottom: 12px; font-size: 10px; color: var(--ivory); background: rgb(11 11 11 / 0.62); padding: 6px 9px; border-radius: 6px; backdrop-filter: blur(6px); }
   .cf-principal figcaption { left: auto; right: 14px; top: 14px; bottom: auto; background: var(--champagne); color: var(--carbon); }
@@ -61,6 +68,9 @@ const verdades = [
     .cf-principal { animation-name: cf-cortina; }
     .cf-principal img { animation-name: cf-zoom; }
     .cf-carro { animation-name: cf-sobe; }
+    .cf-treinamento { animation-name: cf-desce; animation-timing-function: linear; animation-fill-mode: both; animation-duration: auto; }
+    .campo-fotos > .cf-treinamento { animation-timeline: view(); }
+    @keyframes cf-desce { from { transform: translateY(-30px) rotate(-7deg); } to { transform: translateY(40px) rotate(-2deg); } }
     .campo-fotos > .cf-principal { animation-timeline: view(); animation-range: entry 0% cover 40%; }
     .campo-fotos > .cf-principal img, .campo-fotos > .cf-carro { animation-timeline: view(); }
     @keyframes cf-cortina { from { clip-path: inset(30% 0 0 0 round 24px); } to { clip-path: inset(0 round 24px); } }
